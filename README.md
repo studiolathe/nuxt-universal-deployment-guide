@@ -28,7 +28,7 @@ Choose Cloud Compute
 - replace `SERVER_IP` with whatever the ip is for example `ssh root@45.63.31.54`
 
 2. First thing, make sure the software is up to date
-- Run `apt udate` then
+- Run `apt update` then
 - Run `apt upgrade`
 
 3. Add security
