@@ -6,16 +6,15 @@ A basic guide on how to deploy Nuxt.js Universal (SSR) app on a Vultr server.
 
 ## Step 1: Create new server on Vultr
 
-1. Create new server
-Choose Cloud Compute
+1. Create new server Choose Cloud Compute
 
-2. Add SSH key: In terminal `cat ~/.ssh/id_rsa.pub | pbcopy`
+2. Server Location: Sydney
 
-3. Server Location: Sydney
+3. Server type: Debian 10 x64
 
-4. Server type: Debian 10 x64
+4. Server Size: 25 GB SSD $5/mo
 
-5. Server Size: 25 GB SSD $5/mo
+5. Add SSH key: In terminal `cat ~/.ssh/id_rsa.pub | pbcopy` and then select not to ask for password on login
 
 6. Deploy
 
