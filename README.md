@@ -50,7 +50,7 @@ that's saying to create a `yarn` which links to `yarnpkg`
 
 
 
-## Step three: Check your shh config
+## Step 3: Check your shh config
 
 1. `cd ~/.ssh/` and look for `config`
 2. `nano config` and check `Host *` has `ForwardAgent yes` :
@@ -70,21 +70,22 @@ This means that if you `ssh` in to your server, you can access your github repo 
 
 
 
-## Step four: Installing Apache on the server
+## Step 4: Installing Apache on the server
 
 1. Run `apt install apache2` 
 > Note: Apache isn't being used just yet we'll set apache up to connect your domain name and then proxy to your nuxt server
 
 
 
-## Step five: Connect server to git
+## Step 5: Connect server to git and clone repo
 
 1. Run `cd /var/www` which is kinda like your Sites directory
 2. Run `git clone git@github.com:your_github_name/your_repo.git` for example `git clone git@github.com:studiolathe/ebb-dunedin.git`
+3. Don't forget to manually create your `.env` on the server
 
 
 
-## Step six: Get your project running on the server
+## Step 6: Get your project running on the server
 
 1. Cd into the project and then run `yarn install` which will install all the project dependancies
 2. Then we just `yarn run build` and then `yarn start --hostname 0.0.0.0`
@@ -92,7 +93,7 @@ This means that if you `ssh` in to your server, you can access your github repo 
 
 
 
-## Step seven: Create your deploy script in the local project folder
+## Step 7: Create your deploy script in the local project folder
 
 1. Create a file in the root of your project call `scripts/deploy.sh` and add the below, be sure to change `123.123.123.123` to the your server IP:
 
@@ -117,6 +118,36 @@ EOF
 
 
 
-## Step 8: Deploy your site
+## Step 8: Point your new IP to domain
+
+1. Create a file in the root of your project `nano /etc/apache2/sites-available/eym-naturals.conf`
+
+```
+<VirtualHost *:80>
+	ServerName your-domain-name.com
+ ServerAlias your-domain-name.com
+
+	DocumentRoot /var/www/project-folder/dist
+
+	ProxyPass / http://localhost:3000/
+	ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
+```
+
+2. Then enable with `a2ensite project-folder`
+3. Setup proxies `a2enmod proxy proxy_http`
+4. Restart server `systemctl restart apache2`
+5. In the domain providers DNS, create a new `A` record and point it at the new `IP` address and another `A` record with `www` as host that points to `@`
+6 Check updated DNS via https://www.whatsmydns.net/
+
+## Step 9: Add SSL certificate
+
+1. Add certbot `apt install -y python3-certbot-apache`
+2. Then run `certbot --apache`
+3. Tell it to get a cert for both www and the normal domain
+4. Say yes to enabling https redirect
+
+
+## Step 10: Deploy your site
 
 1. After pushing changes to git run `./scripts/deploy.sh` from the local project folder and watch it go!
