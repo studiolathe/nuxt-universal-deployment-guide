@@ -2,7 +2,7 @@
 
 A basic guide on how to deploy Nuxt.js Universal (SSR) app on a Vultr server.
 
-
+----
 
 ## Step 1: Create new server on Vultr
 
@@ -18,7 +18,7 @@ A basic guide on how to deploy Nuxt.js Universal (SSR) app on a Vultr server.
 
 6. Deploy
 
-
+----
 
 ## Step 2: Connecting and setting up server via SSH
 
@@ -48,7 +48,7 @@ that's saying to create a `yarn` which links to `yarnpkg`
 6. Install Git
 - Run `apt install git`
 
-
+----
 
 ## Step 3: Check your shh config
 
@@ -68,14 +68,14 @@ Host 68.183.104.106
 This means that if you `ssh` in to your server, you can access your github repo from there. 
 > Note: Make sure your connecting to GitHub via SSH by running `ssh -T git@github.com` locally. If its denied make sure to add your SSH Key to Github first.
 
-
+----
 
 ## Step 4: Installing Apache on the server
 
 1. Run `apt install apache2` 
 > Note: Apache isn't being used just yet we'll set apache up to connect your domain name and then proxy to your nuxt server
 
-
+----
 
 ## Step 5: Connect server to git and clone repo
 
@@ -83,7 +83,7 @@ This means that if you `ssh` in to your server, you can access your github repo 
 2. Run `git clone git@github.com:your_github_name/your_repo.git` for example `git clone git@github.com:studiolathe/ebb-dunedin.git`
 3. Don't forget to manually create your `.env` on the server
 
-
+----
 
 ## Step 6: Get your project running on the server
 
@@ -91,7 +91,7 @@ This means that if you `ssh` in to your server, you can access your github repo 
 2. Then we just `yarn run build` and then `yarn start --hostname 0.0.0.0`
 3. In order to have the Nuxt server running in the background we need to add `yarn global add pm2` and then run `pm2 start "yarn start --hostname 0.0.0.0"`
 
-
+----
 
 ## Step 7: Create your deploy script in the local project folder
 
@@ -116,16 +116,16 @@ EOF
 
 2. Make the script executable (in your command line) `chmod +x ./scripts/deploy.sh`
 
-
+----
 
 ## Step 8: Point your new IP to domain
 
-1. Create a file in the root of your project `nano /etc/apache2/sites-available/eym-naturals.conf`
+1. Create a file in the root of your project `nano /etc/apache2/sites-available/project-folder.conf`
 
 ```
 <VirtualHost *:80>
 	ServerName your-domain-name.com
- ServerAlias your-domain-name.com
+ 	ServerAlias www.your-domain-name.com
 
 	DocumentRoot /var/www/project-folder/dist
 
@@ -140,6 +140,8 @@ EOF
 5. In the domain providers DNS, create a new `A` record and point it at the new `IP` address and another `A` record with `www` as host that points to `@`
 6 Check updated DNS via https://www.whatsmydns.net/
 
+----
+
 ## Step 9: Add SSL certificate
 
 1. Add certbot `apt install -y python3-certbot-apache`
@@ -147,6 +149,7 @@ EOF
 3. Tell it to get a cert for both www and the normal domain
 4. Say yes to enabling https redirect
 
+----
 
 ## Step 10: Deploy your site
 
