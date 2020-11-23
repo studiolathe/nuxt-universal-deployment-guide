@@ -52,7 +52,7 @@ that's saying to create a `yarn` which links to `yarnpkg`
 
 ## Step 3: Check your shh config
 
-1. `cd ~/.ssh/` and look for `config`
+1. In a local terminal window `cd ~/.ssh/` and look for `config`
 2. `nano config` and check `Host *` has `ForwardAgent yes` :
 ```
 Host *
