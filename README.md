@@ -36,8 +36,8 @@ A basic guide on how to deploy Nuxt.js Universal (SSR) app on a Vultr server.
 4. Install Nodejs
 - Run `apt install nodejs`
 - When that's done run `node -v` and check that it tells you a version, like `10.x`
-> Note: You might be best off using `nvm` to download and manage `node`: 
-https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-debian-10
+> Note: If modules dependencies require newer versions (i.e. 16.x.x of `node` use `nvm` to download and manage `node`: 
+> https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-debian-10
 
 5. Install Yarn
 -  Run `apt install yarnpkg` 
@@ -47,7 +47,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-debia
 that's saying to create a `yarn` which links to `yarnpkg`
 - if that worked, you can now try `yarn -v` and confirm it's working: `1.13.0`
 > Note: If using `nvm` install `yarn` with the below:
-https://classic.yarnpkg.com/en/docs/install#debian-stable
+> https://classic.yarnpkg.com/en/docs/install#debian-stable
 
 6. Install Git
 - Run `apt install git`
