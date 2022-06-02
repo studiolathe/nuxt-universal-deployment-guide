@@ -94,6 +94,7 @@ This means that if you `ssh` in to your server, you can access your github repo 
 1. Cd into the project and then run `yarn install` which will install all the project dependancies
 2. Then we just `yarn run build` and then `yarn start --hostname 0.0.0.0`
 3. In order to have the Nuxt server running in the background we need to add `yarn global add pm2` and then run `pm2 start "yarn start --hostname 0.0.0.0"`
+> Note: If setting up staging branch, make sure to run seperate PM2 instance `pm2 start "yarn start --hostname 0.0.0.0 --port 3001"`
 
 ----
 
