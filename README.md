@@ -86,6 +86,7 @@ This means that if you `ssh` in to your server, you can access your github repo 
 1. Run `cd /var/www` which is kinda like your Sites directory
 2. Run `git clone git@github.com:your_github_name/your_repo.git` for example `git clone git@github.com:studiolathe/ebb-dunedin.git`
 3. Don't forget to manually create your `.env` on the server
+> Note: If setting up staging branch, make sure to clone staging branch `git clone <url> --branch <branch> --single-branch [<folder>]` i.e `git clone git@github.com:studiolathe/flavedo-albedo.git --branch staging --single-branch flavedo-albedo-staging` 
 
 ----
 
@@ -94,7 +95,7 @@ This means that if you `ssh` in to your server, you can access your github repo 
 1. Cd into the project and then run `yarn install` which will install all the project dependancies
 2. Then we just `yarn run build` and then `yarn start --hostname 0.0.0.0`
 3. In order to have the Nuxt server running in the background we need to add `yarn global add pm2` and then run `pm2 start "yarn start --hostname 0.0.0.0"`
-> Note: If setting up staging branch, make sure to run seperate PM2 instance `pm2 start "yarn start --hostname 0.0.0.0 --port 3001"`
+> Note: If setting up staging branch, make sure to run seperate PM2 instance `pm2 start "yarn start --hostname 0.0.0.0 --port 3001"` 
 
 ----
 
