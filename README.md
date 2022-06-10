@@ -129,6 +129,7 @@ EOF
 1. Create a file in the root of your project `nano /etc/apache2/sites-available/project-folder.conf`
 
 ```
+# Production
 <VirtualHost *:80>
 	ServerName your-domain-name.com
  	ServerAlias www.your-domain-name.com
@@ -137,6 +138,17 @@ EOF
 
 	ProxyPass / http://localhost:3000/
 	ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
+
+# Staging
+<VirtualHost *:80>
+	ServerName staging.flavedoandalbedo.com
+ 	ServerAlias www.staging.flavedoandalbedo.com
+
+	DocumentRoot /var/www/flavedo-albedo-staging/dist
+
+	ProxyPass / http://localhost:3001/
+	ProxyPassReverse / http://localhost:3001/
 </VirtualHost>
 ```
 
