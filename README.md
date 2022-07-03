@@ -157,6 +157,7 @@ EOF
 4. Restart server `systemctl restart apache2`
 5. In the domain providers DNS, create a new `A` record and point it at the new `IP` address and another `A` record with `www` as host that points to `@`
 6 Check updated DNS via https://www.whatsmydns.net/
+> Note: If reciving timeout errors it may be due to server firewalls. Run `apt purge ufw` and manage firewall via Vult UI. 
 
 ----
 
